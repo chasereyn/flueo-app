@@ -1,121 +1,150 @@
-# Next.js SaaS Starter
+## FLUEO ROADMAP
 
-This is a starter template for building a SaaS application using **Next.js** with support for authentication, Stripe integration for payments, and a dashboard for logged-in users.
+Make Color Theme be green
+Record all of this (vibe code it with me!)
 
-**Demo: [https://next-saas-start.vercel.app/](https://next-saas-start.vercel.app/)**
+BASIC FEATURES I WANT
+- Flashcard system (make extra table)(do properly through supabase files)
+- AI Description, add production key, add generated flashcards
+- sm2 algorithm for review
 
-## Features
+DETAILS
+- Make sure stripe items are updated
 
-- Marketing landing page (`/`) with animated Terminal element
-- Pricing page (`/pricing`) which connects to Stripe Checkout
-- Dashboard pages with CRUD operations on users/teams
-- Basic RBAC with Owner and Member roles
-- Subscription management with Stripe Customer Portal
-- Email/password authentication with JWTs stored to cookies
-- Global middleware to protect logged-in routes
-- Local middleware to protect Server Actions or validate Zod schemas
-- Activity logging system for any user events
+SHIP AND MARKET THIS EVERYWHERE!!
 
-## Tech Stack
+FROM THERE
 
-- **Framework**: [Next.js](https://nextjs.org/)
-- **Database**: [Postgres](https://www.postgresql.org/)
-- **ORM**: [Drizzle](https://orm.drizzle.team/)
-- **Payments**: [Stripe](https://stripe.com/)
-- **UI Library**: [shadcn/ui](https://ui.shadcn.com/)
 
-## Getting Started
 
-```bash
-git clone https://github.com/nextjs/saas-starter
-cd saas-starter
-pnpm install
-```
 
-## Running Locally
 
-[Install](https://docs.stripe.com/stripe-cli) and log in to your Stripe account:
 
-```bash
-stripe login
-```
 
-Use the included setup script to create your `.env` file:
+- Fix the add thing
+- Manual flash card add
+- AI structure then short description after
+- Make into components
+- Record all of this
 
-```bash
-pnpm db:setup
-```
+DOCUMENT / USE
+- Record current progress
+- Try it out
 
-Run the database migrations and seed the database with a default user and team:
+URGENT
+- Get the buttons to be hover
+- components PLEASE
+- remove browser errors
 
-```bash
-pnpm db:migrate
-pnpm db:seed
-```
+NOTES
+- Randomize the order of the terms
+- Buttons on the bottom, make constant spacer card doesn't move
+- No cards to review (skip ahead anyways)
+- Ability to sort the table
+- Prompt: consider literal and idiomatic meanings, mexican dialect
+- AI Explainer what does XXX mean here (in review, edit, and add)
+- Typing special symbols for Spanish
 
-This will create the following user and team:
+BIG
+- AI Explanation during adding
+- Replace the cards with info / collect statistics (separate database?)
+- Take things and make components (split up big files so I know what is going on)
 
-- User: `test@test.com`
-- Password: `admin123`
+SMALL
+- main table make 4 green
+- cursor pointer for everything
+- enlarge all buttons
+- change to 'add' in add page
+- All supabase queries need to be seen by only the current user!
+- Magic stars for AI stuff
 
-You can also create new users through the `/sign-up` route.
+ORGANIZATION
+- Give description and notes and alternate translations and whatnot
+- Remove other supabase projects
+- Remove other vercel stuff
+- Rename supabase / vercel / github
+- Rename folders to how I like
 
-Finally, run the Next.js development server:
+SHARE WITH COMMUNITIES AT THIS POINT
+VIDEO
+- How I set this up...
+- Like Literally just record your progress, post on X, people will love this!
+- Share in reddit
+- Software, language learning, other youtubers and COMMUNITIES
+- Product Hunt put it on there and look there as well
+--------------------------------------------
 
-```bash
-pnpm dev
-```
+BIG
+- Get Toaster working in all instances
+- Statistics page, panel with information
+- Progress for each word / phrase
+- Daily Review Goal
+- Build out about, help, settings
 
-Open [http://localhost:3000](http://localhost:3000) in your browser to see the app in action.
+DETAILS
+- Dark mode all screens
+- Hero make pretty
+- Login and forget password and auth make look good
+- Ensure copy is good (auth spaces)
+- Cursor pointer on hover ALL BUTTONS
+- Link to me, my github, my projects
+- Feedback link as well (go to another supabase)
+- redo icons in side bar
 
-You can listen for Stripe webhooks locally through their CLI to handle subscription change events:
+PRACTICE USING
+- ask AI
+- try to break prompt (check input and output)
+- implement <thinking> tags
 
-```bash
-stripe listen --forward-to localhost:3000/api/stripe/webhook
-```
+DEPLOY
+- Create color, logo, branding
+- Favicon
+- ask Grok
+- Ensure moderation / content length for AI
+- Deny prompt injecting
+- Supabase ensure no span sign up and good!
+- Fix 404 errors
 
-## Testing Payments
+ENVIRONMENT / SETTINGS
+- Max Tokens
+- Prompts (fix grammar)
+- num to review each session
+- User dialect (for the AI)
 
-To test Stripe payments, use the following test card details:
+EXPAND
+- Choose Language
+- Listen to Audio
+- Import Text
+- Capture Keywords and Keyphrases
+- https://github.com/nextjs/saas-starter
+- Daily Joural (record yourself and such)
+- Talk to friends as well
 
-- Card Number: `4242 4242 4242 4242`
-- Expiration: Any future date
-- CVC: Any 3-digit number
+CURSOR
+- Supabase MCP
 
-## Going to Production
+FINALIZE
+- Enable RLS
+- Rate Limit Endpoints (supabase edge function with rate limiter)
+- Vercel settings, security, WAF
+- CAPTCHA
+- Monitoring and logs
+- bun audit
+- Validate inputs on backend
 
-When you're ready to deploy your SaaS application to production, follow these steps:
+RESOURCES
+https://www.youtube.com/watch?v=Qp20WEl1FP4, Other Tell Me In Spanish
+https://readlang.com/es/dashboard
+https://www.youtube.com/watch?v=97OxMXc3aXQ
+https://www.tellmeinspanish.com/mexican-slang-spanish/
 
-### Set up a production Stripe webhook
+https://www.youtube.com/watch?v=ed9VGW-1_6U&t=783s
 
-1. Go to the Stripe Dashboard and create a new webhook for your production environment.
-2. Set the endpoint URL to your production API route (e.g., `https://yourdomain.com/api/stripe/webhook`).
-3. Select the events you want to listen for (e.g., `checkout.session.completed`, `customer.subscription.updated`).
-
-### Deploy to Vercel
-
-1. Push your code to a GitHub repository.
-2. Connect your repository to [Vercel](https://vercel.com/) and deploy it.
-3. Follow the Vercel deployment process, which will guide you through setting up your project.
-
-### Add environment variables
-
-In your Vercel project settings (or during deployment), add all the necessary environment variables. Make sure to update the values for the production environment, including:
-
-1. `BASE_URL`: Set this to your production domain.
-2. `STRIPE_SECRET_KEY`: Use your Stripe secret key for the production environment.
-3. `STRIPE_WEBHOOK_SECRET`: Use the webhook secret from the production webhook you created in step 1.
-4. `POSTGRES_URL`: Set this to your production database URL.
-5. `AUTH_SECRET`: Set this to a random string. `openssl rand -base64 32` will generate one.
-
-## Other Templates
-
-While this template is intentionally minimal and to be used as a learning resource, there are other paid versions in the community which are more full-featured:
-
-- https://achromatic.dev
-- https://shipfa.st
-- https://makerkit.dev
-- https://zerotoshipped.com
-- https://turbostarter.dev
-
-change something redeploy
+https://www.youtube.com/watch?v=M3ka8N_7GCE
+https://www.youtube.com/watch?v=CeuBWOU_yb8
+https://aprenderespanol.org/lecturas/cuentos-lecturas.html
+https://www.youtube.com/watch?v=SEROD8pUnCA
+https://www.youtube.com/watch?v=3z5zt4duxFU
+https://www.youtube.com/watch?v=geUgTbNyHZI
+https://www.youtube.com/watch?v=UAsDxsUkvyw
+https://www.youtube.com/watch?v=6DKOYUb92Uc
