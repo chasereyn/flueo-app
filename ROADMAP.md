@@ -21,6 +21,7 @@ SECURITY
 PREDETAILS
 - Stripe should say flueo not maverick reynolds
 - Other account stuff from the Acme page on desktop
+- Update Stripe item details and what it says and such
 
 BRANDING
 - Improve home page layout, borrow from other pages
@@ -30,6 +31,7 @@ MARKETING
 - Post on Reddit about the working prototype
 - Post in all sub communities and on X and such
 - Document this journey every single day
+- CREATE INSTAGRAM ADS AND GET THIS FUCKER MOVING YOU SO GOT THIS!!!
 
 
 =========== SHIP THIS FUCKER ================================
