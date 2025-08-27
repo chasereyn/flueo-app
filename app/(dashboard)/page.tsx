@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
-import { ArrowRight, CreditCard, Database } from 'lucide-react';
-import { Terminal } from './terminal';
+import { ArrowRight, BookOpen, Brain, Pen } from 'lucide-react';
+import Link from 'next/link';
 
 export default function HomePage() {
   return (
@@ -10,32 +10,71 @@ export default function HomePage() {
           <div className="lg:grid lg:grid-cols-12 lg:gap-8">
             <div className="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
               <h1 className="text-4xl font-bold text-gray-900 tracking-tight sm:text-5xl md:text-6xl">
-                Build Your SaaS
-                <span className="block text-orange-500">Faster Than Ever</span>
+                Learn Spanish Through
+                <span className="block text-orange-500">Your Daily Life</span>
               </h1>
               <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
-                Launch your SaaS product in record time with our powerful,
-                ready-to-use template. Packed with modern technologies and
-                essential integrations.
+                Flueo helps you learn Spanish naturally by journaling about your day. 
+                Write in English, get AI-powered translations, and build your vocabulary 
+                through personalized flashcards based on the words you actually want to use.
               </p>
-              <div className="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
-                <a
-                  href="https://vercel.com/templates/next.js/next-js-saas-starter"
-                  target="_blank"
-                >
+              <div className="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0 space-x-4">
+                <Link href="/sign-in">
+                  <Button
+                    size="lg"
+                    className="text-lg rounded-full bg-orange-500 hover:bg-orange-600"
+                  >
+                    Get Started
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </Link>
+                <Link href="/sign-in">
                   <Button
                     size="lg"
                     variant="outline"
                     className="text-lg rounded-full"
                   >
-                    Deploy your own
-                    <ArrowRight className="ml-2 h-5 w-5" />
+                    Sign In
                   </Button>
-                </a>
+                </Link>
               </div>
             </div>
             <div className="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center">
-              <Terminal />
+              <div className="w-full rounded-lg shadow-lg overflow-hidden">
+                <div className="bg-white p-8">
+                  <div className="space-y-6">
+                    <div className="flex items-start">
+                      <div className="flex-shrink-0">
+                        <div className="bg-orange-100 rounded-full p-3">
+                          <Pen className="h-6 w-6 text-orange-600" />
+                        </div>
+                      </div>
+                      <div className="ml-4">
+                        <p className="text-gray-700">Today I went to the coffee shop and ordered a latte...</p>
+                        <p className="mt-2 text-sm text-orange-500">Translating...</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start">
+                      <div className="flex-shrink-0">
+                        <div className="bg-green-100 rounded-full p-3">
+                          <BookOpen className="h-6 w-6 text-green-600" />
+                        </div>
+                      </div>
+                      <div className="ml-4">
+                        <p className="text-gray-700">Hoy fui a la cafetería y pedí un café con leche...</p>
+                        <div className="mt-2 flex space-x-2">
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800">
+                            cafetería
+                          </span>
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800">
+                            pedir
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -55,41 +94,41 @@ export default function HomePage() {
               </div>
               <div className="mt-5">
                 <h2 className="text-lg font-medium text-gray-900">
-                  Next.js and React
+                  Daily Journaling
                 </h2>
                 <p className="mt-2 text-base text-gray-500">
-                  Leverage the power of modern web technologies for optimal
-                  performance and developer experience.
+                  Write about your day in English and get instant Spanish translations. 
+                  Learn language naturally through your own experiences.
                 </p>
               </div>
             </div>
 
             <div className="mt-10 lg:mt-0">
               <div className="flex items-center justify-center h-12 w-12 rounded-md bg-orange-500 text-white">
-                <Database className="h-6 w-6" />
+                <Brain className="h-6 w-6" />
               </div>
               <div className="mt-5">
                 <h2 className="text-lg font-medium text-gray-900">
-                  Postgres and Drizzle ORM
+                  Smart Flashcards
                 </h2>
                 <p className="mt-2 text-base text-gray-500">
-                  Robust database solution with an intuitive ORM for efficient
-                  data management and scalability.
+                  Automatically generated flashcards from your journal entries, 
+                  focusing on the vocabulary you actually want to use.
                 </p>
               </div>
             </div>
 
             <div className="mt-10 lg:mt-0">
               <div className="flex items-center justify-center h-12 w-12 rounded-md bg-orange-500 text-white">
-                <CreditCard className="h-6 w-6" />
+                <BookOpen className="h-6 w-6" />
               </div>
               <div className="mt-5">
                 <h2 className="text-lg font-medium text-gray-900">
-                  Stripe Integration
+                  Personalized Learning
                 </h2>
                 <p className="mt-2 text-base text-gray-500">
-                  Seamless payment processing and subscription management with
-                  industry-leading Stripe integration.
+                  Learn Spanish that's relevant to your life, with AI-powered 
+                  translations and contextual vocabulary building.
                 </p>
               </div>
             </div>
@@ -102,25 +141,23 @@ export default function HomePage() {
           <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
             <div>
               <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
-                Ready to launch your SaaS?
+                Start Learning Spanish Today
               </h2>
               <p className="mt-3 max-w-3xl text-lg text-gray-500">
-                Our template provides everything you need to get your SaaS up
-                and running quickly. Don't waste time on boilerplate - focus on
-                what makes your product unique.
+                Join Flueo and start learning Spanish in a way that's personal and meaningful to you.
+                No more generic phrases - learn the Spanish you actually want to speak.
               </p>
             </div>
             <div className="mt-8 lg:mt-0 flex justify-center lg:justify-end">
-              <a href="https://github.com/nextjs/saas-starter" target="_blank">
+              <Link href="/sign-in">
                 <Button
                   size="lg"
-                  variant="outline"
-                  className="text-lg rounded-full"
+                  className="text-lg rounded-full bg-orange-500 hover:bg-orange-600"
                 >
-                  View the code
+                  Get Started Free
                   <ArrowRight className="ml-3 h-6 w-6" />
                 </Button>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

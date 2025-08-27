@@ -5,10 +5,26 @@ This document outlines the key guidelines and preferences for AI agents assistin
 ## Project Context
 
 Flueo is a language learning SaaS application built with:
-- Next.js frontend with Material UI components
+- Next.js frontend with shadcn/ui components (light theme)
 - Supabase for backend and auth
+- Drizzle ORM for type-safe database operations
 - Stripe for payments
 - AI integration for language processing
+
+### Database Setup
+The project uses Drizzle ORM with PostgreSQL (via Supabase). Key tables include:
+- `users` - User accounts and authentication
+- `teams` - Team management and subscriptions
+- `journal_entries` - User's language learning journal
+  - `english_text` - Original journal entry
+  - `spanish_text` - Translated content
+  - `ai_translated` - Translation source flag
+
+### Component Libraries
+- Using shadcn/ui for UI components (not Material UI)
+- Components are copied into the project under `components/ui/`
+- Custom theme configuration in `components.json`
+- Light theme with consistent styling
 
 ## File Structure
 
@@ -77,7 +93,7 @@ app/
 
 - **Single Responsibility**: Each component and file should do exactly one thing and do it well
 - **Component-First**: Break features into small, reusable components
-- **Material UI**: Use Material UI components wherever possible
+- **shadcn/ui**: Use shadcn/ui components from components/ui/ directory
 - **File Organization**: Keep related components close together in the file structure
 
 ### 2. Code Style
@@ -117,7 +133,7 @@ When working with AI features:
 
 ```tsx
 // Good component structure
-import { Card, Typography } from '@mui/material';
+import { Card, CardContent } from '@/components/ui/card';
 
 interface FlashcardProps {
   front: string;
