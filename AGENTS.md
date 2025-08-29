@@ -12,13 +12,63 @@ Flueo is a language learning SaaS application built with:
 - AI integration for language processing
 
 ### Database Setup
-The project uses Drizzle ORM with PostgreSQL (via Supabase). Key tables include:
-- `users` - User accounts and authentication
-- `teams` - Team management and subscriptions
-- `journal_entries` - User's language learning journal
-  - `english_text` - Original journal entry
-  - `spanish_text` - Translated content
-  - `ai_translated` - Translation source flag
+The project uses Supabase PostgreSQL with the following tables:
+
+1. **auth.users** (Managed by Supabase)
+   - Default Supabase authentication table
+
+2. **user_profiles**
+   - Extends auth.users with subscription data
+   - `id` - UUID (references auth.users)
+   - `stripe_customer_id` - For payment processing
+   - `stripe_subscription_id` - Active subscription
+   - `plan_name` - Current subscription tier
+   - `subscription_status` - Active/cancelled/etc
+
+3. **journal_entries**
+   - `id` - Serial primary key
+   - `user_id` - UUID (references auth.users)
+   - `english_text` - Original journal entry
+   - `spanish_text` - Translated content
+   - `ai_translated` - Translation source flag
+   - Timestamps for created/updated
+
+4. **flashcards**
+   - `id` - Serial primary key
+   - `user_id` - UUID (references auth.users)
+   - `journal_entry_id` - Optional reference to source
+   - `english_text` - English word/phrase
+   - `spanish_text` - Spanish translation
+   - `context_sentence` - Usage example
+   - `notes` - Study notes
+   - Spaced repetition fields:
+     - `quality` (0-5)
+     - `repetition_count`
+     - `easiness_factor`
+     - `interval_days`
+     - `next_review`
+     - `last_reviewed`
+   - `ai_generated` - Whether created by AI
+   - `suspended` - Temporarily disabled
+
+5. **activity_logs**
+   - `id` - Serial primary key
+   - `user_id` - UUID (references auth.users)
+   - `action` - Activity description
+   - `timestamp` - When it occurred
+   - `ip_address` - Security tracking
+
+6. **invitations**
+   - `id` - Serial primary key
+   - `email` - Invitee's email
+   - `invited_by` - UUID (references auth.users)
+   - `status` - pending/accepted/etc
+
+All tables have:
+- Row Level Security (RLS) enabled
+- Policies ensuring users only access their own data
+- Appropriate indexes for performance
+- Updated_at trigger for change tracking
 
 ### Component Libraries
 - Using shadcn/ui for UI components (not Material UI)
@@ -101,7 +151,7 @@ app/
 - Prefer TypeScript with proper type definitions
 - Use functional components with hooks
 - Implement proper error handling and loading states
-- Follow Material UI theming and styling patterns
+- Follow shadcn/ui theming and styling patterns
 - Keep components small and focused (ideally under 200 lines)
 
 ### 3. Feature Implementation
@@ -111,14 +161,16 @@ When implementing new features:
 2. Create individual components before assembling the feature
 3. Implement proper error handling and loading states
 4. Add appropriate TypeScript types
-5. Follow Material UI patterns for consistency
+5. Follow shadcn/ui patterns for consistency
 
-### 4. Database Schema
+### 4. Database Guidelines
 
-- All Supabase queries should include proper RLS policies
+- All Supabase queries must include proper RLS policies
 - Each user should only see their own data
 - Follow established naming conventions
 - Include proper foreign key relationships
+- Use Supabase auth.users as the source of truth for user data
+- Always handle auth state changes appropriately
 
 ### 5. AI Integration Guidelines
 
@@ -191,3 +243,5 @@ export const Flashcard: React.FC<FlashcardProps> = ({
 - Implement proper rate limiting
 - Follow security best practices for AI integrations
 - Ensure proper authentication checks
+- Use Supabase RLS policies consistently
+- Never expose sensitive data in client-side code
