@@ -80,62 +80,69 @@ All tables have:
 
 ```
 app/
-├── (auth)/                    # Auth route group (doesn't affect URL)
-│   ├── login/                 # /login
-│   │   └── page.tsx          
-│   ├── signup/               # /signup
-│   │   └── page.tsx
-│   └── layout.tsx            # Shared auth layout
+├── (auth)/                    # Auth group (login, signup, etc.)
+│   ├── login/
+│   ├── signup/
+│   └── forgot-password/
 │
-├── (marketing)/              # Marketing/public route group
-│   ├── page.tsx              # Landing page (/)
-│   ├── pricing/              # /pricing
-│   │   └── page.tsx
-│   └── layout.tsx            # Marketing layout with nav
-│
-├── (dashboard)/              # Protected dashboard routes
-│   ├── dashboard/            # Main dashboard (/dashboard)
-│   │   ├── journal/          # /dashboard/journal
-│   │   │   ├── page.tsx     # Journal entries list
-│   │   │   └── [id]/        # Individual journal entry
-│   │   │       └── page.tsx
-│   │   │
-│   │   ├── flashcards/      # /dashboard/flashcards
-│   │   │   ├── page.tsx     # Flashcard review
-│   │   │   └── stats/       # Flashcard statistics
-│   │   │       └── page.tsx
-│   │   │
-│   │   ├── progress/        # /dashboard/progress
-│   │   │   └── page.tsx     # Learning progress/stats
-│   │   │
-│   │   └── settings/        # /dashboard/settings
-│   │       └── page.tsx     # User/language settings
+├── (dashboard)/              # Protected routes group
+│   ├── dashboard/           # Main dashboard with stats
+│   │   ├── page.tsx
+│   │   ├── loading.tsx
+│   │   └── components/
+│   │       ├── stats-cards.tsx
+│   │       ├── progress-graph.tsx
+│   │       └── streak-calendar.tsx
 │   │
-│   └── layout.tsx           # Dashboard layout with sidebar
+│   ├── journal/            # Journaling feature
+│   │   ├── page.tsx        # Journal list/overview
+│   │   ├── [id]/           # Individual journal entry
+│   │   │   ├── page.tsx    # View/edit journal
+│   │   │   └── loading.tsx
+│   │   └── components/
+│   │       ├── journal-editor.tsx
+│   │       ├── translation-view.tsx
+│   │       └── entry-list.tsx
+│   │
+│   ├── terms/             # Flashcards/vocabulary
+│   │   ├── page.tsx       # Terms overview/list
+│   │   ├── add/          # Add new terms
+│   │   │   └── page.tsx
+│   │   ├── review/       # SRS review session
+│   │   │   └── page.tsx
+│   │   └── components/
+│   │       ├── flashcard.tsx
+│   │       ├── term-list.tsx
+│   │       └── review-session.tsx
+│   │
+│   ├── settings/         # User preferences & subscription
+│   │   ├── page.tsx     # Settings overview
+│   │   ├── profile/     # Profile settings
+│   │   │   └── page.tsx
+│   │   ├── subscription/ # Subscription management
+│   │   │   └── page.tsx
+│   │   └── components/
+│   │       ├── profile-form.tsx
+│   │       └── subscription-details.tsx
+│   │
+│   └── layout.tsx       # Protected routes layout
 │
-├── api/                      # API routes
-│   ├── auth/                # Auth endpoints
-│   ├── journal/             # Journal CRUD
-│   ├── flashcards/         # Flashcard operations
-│   └── ai/                 # AI translation endpoints
-│
-└── components/             # Shared components
-    ├── marketing/         # Landing page components
-    ├── dashboard/        # Dashboard-specific components
-    ├── journal/         # Journal components
-    ├── flashcards/     # Flashcard components
-    └── ui/            # Shared UI components
+├── layout.tsx           # Root layout
+└── page.tsx            # Landing page
 ```
 
 ### Key Routes
 
-- `/` - Landing page with "Get Started" button
-- `/login` - User login
-- `/signup` - New user registration
-- `/dashboard` - Main dashboard with learning stats
-- `/dashboard/journal` - Daily journal entries
-- `/dashboard/flashcards` - Flashcard review system
-- `/dashboard/progress` - Learning progress tracking
+- `/` - Landing page with feature overview and signup CTA
+- `/login`, `/signup` - Authentication routes
+- `/dashboard` - Overview with learning statistics and progress
+- `/journal` - Journal entries list and creation
+- `/journal/[id]` - Individual journal entry view/edit
+- `/terms` - Vocabulary management and flashcard review
+- `/terms/add` - Add new terms manually or generate from journals
+- `/terms/review` - Spaced repetition review session
+- `/settings` - User preferences and profile
+- `/settings/subscription` - Subscription management
 
 ## Development Guidelines
 
