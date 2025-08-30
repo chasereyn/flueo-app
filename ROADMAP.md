@@ -1,12 +1,25 @@
 ## FLUEO ROADMAP
 
+
+
+FROM OTHERS
+- Hero page for the front (text)
+- Stripe stuff for the integration
+- Previous pages from other things and such
+
+Ensure API is structured good
+BUILD THE API STUFF OUT AND TEST IT WITH DUMMY DATA FOR ALL ENDPOINTS
+
+INTEGRATE STRIPE BILLING
+
+
+
+
+
 ASAP
-- How do I want the API to be structured
 - Make Color Theme Blue
 - Hover mouse on every single button
-- Billing bring to Stripe billing
 - Side panel visible always
-- Fix page URLs and layout and stuff (file structure)
 
 JOURNAL
 - Date to see previous journals

@@ -7,7 +7,6 @@ This document outlines the key guidelines and preferences for AI agents assistin
 Flueo is a language learning SaaS application built with:
 - Next.js frontend with shadcn/ui components (light theme)
 - Supabase for backend and auth
-- Drizzle ORM for type-safe database operations
 - Stripe for payments
 - AI integration for language processing
 
@@ -80,10 +79,11 @@ All tables have:
 
 ```
 app/
-├── (auth)/                    # Auth group (login, signup, etc.)
+├── auth/                    # Auth group (login, signup, etc.)(all this section handled by supabase)
 │   ├── login/
-│   ├── signup/
+│   ├── sign-up/
 │   └── forgot-password/
+│   └── update-password/
 │
 ├── (dashboard)/              # Protected routes group
 │   ├── dashboard/           # Main dashboard with stats
@@ -134,7 +134,7 @@ app/
 ### Key Routes
 
 - `/` - Landing page with feature overview and signup CTA
-- `/login`, `/signup` - Authentication routes
+- `/auth/login`, `/auth/signup` - Authentication routes
 - `/dashboard` - Overview with learning statistics and progress
 - `/journal` - Journal entries list and creation
 - `/journal/[id]` - Individual journal entry view/edit
