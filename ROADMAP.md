@@ -1,5 +1,112 @@
 ## FLUEO ROADMAP
 
+MAKE VIDEO OF THIS NEXT
+
+Sidebar = dashboard, journal, terms, review
+
+DASHBOARD
+- Show stats listed here / somewhere, what could cards be
+
+JOURNAL
+- write in my log
+
+TERMS
+- Show terms, add manually
+
+REVIEW
+- Review page for each term, difficulty 1-4
+
+PROFILE
+- Change information
+
+HERO
+- Something nice, learn spanish through daily life, features on side
+
+PRICING
+- See plans, get started means login then go to plans (separate for each button)
+
+SUBSCRIPTION
+- See current plan, manage button to stripe
+
+
+So as of now, we have authentication set up and it brings us to a dummy dashboard and we have a button down there at the bottom to logout which also works successfully. So for this app, I am thinking about having a paid tier which is unlimited flashcards / terms and journaling but then a paid tier which includes AI flashcard generation after maybe 5 free ones and this will be $2.99 per month or $4.99 per month still deciding but let's go with 499 for now. I want you to help me write descriptions in the agents.md about the pricing and then I have some technical questions to ask you
+
+Pricing Page User Flow:
+1. User views pricing page
+2. Clicks upgrade button
+3. If not logged in -> Sign up flow
+4. If logged in -> Stripe Checkout
+5. After payment -> Update user_profiles
+6. Redirect to dashboard
+
+Manage Subscription User Flow:
+1. User clicks "Billing" in dashboard sidebar
+2. System checks subscription status:
+   - Free Tier: Show upgrade card with features and upgrade button
+   - Premium Tier: Show current plan details and management options
+3. Premium User Actions:
+   - View current plan and status
+   - View usage statistics
+   - Access billing history
+   - Update payment method (redirects to Stripe Portal)
+   - Cancel subscription (redirects to Stripe Portal)
+4. After any Stripe Portal action:
+   - Webhook receives update
+   - Updates user_profiles table
+   - Updates UI to reflect changes
+5. Cancellation handling:
+   - Keep premium access until end of billing period
+   - Show renewal date / access expiration
+   - Display reactivation option
+
+AI Translation Limit Implementation:
+1. Database Updates:
+   - Add to user_profiles:
+     • ai_translations_used (integer)
+     • ai_translations_limit (integer, 5 for free, -1 for premium)
+     • translations_reset_date (timestamp)
+   
+2. Usage Tracking Flow:
+   - Before each AI translation:
+     • Check subscription status
+     • If free tier:
+       - Verify ai_translations_used < ai_translations_limit
+       - If limit reached, prompt upgrade
+       - If under limit, proceed and increment counter
+     • If premium tier:
+       - Proceed with no limits (-1 means unlimited)
+   
+3. Reset Logic:
+   - Monthly reset for free tier users:
+     • Scheduled task checks translations_reset_date
+     • If month has passed:
+       - Reset ai_translations_used to 0
+       - Update translations_reset_date
+   
+4. Subscription Change Handling:
+   - User upgrades to premium:
+     • Set ai_translations_limit to -1
+     • Clear ai_translations_used counter
+   - User downgrades to free:
+     • Set ai_translations_limit to 5
+     • Set ai_translations_used to 0
+     • Set translations_reset_date to current date
+
+ALTER TABLE user_profiles
+ADD COLUMN ai_translations_used integer DEFAULT 0,
+ADD COLUMN ai_translations_limit integer DEFAULT 5,
+ADD COLUMN translations_reset_date timestamp with time zone DEFAULT CURRENT_TIMESTAMP;
+
+Yes perfect! So I want to have a pricing page at flueo.app/pricing that shows these 2 cards, then basically explain what we would do to set up stripe and how we would get the stripe system to work for a user to subscribe (they need an account first obviously). Then describe what would go in the billing section when the user clicks that here on this dashboard. Maybe they could go to a page that shows their current plan and then when they hit manage subscription it takes them back to the stripe interface. How does that all work anyways
+
+
+checkout.session.completed
+customer.subscription.created
+customer.subscription.updated
+https://www.flueo.app/api/stripe/webhook
+
+
+
 
 
 FROM OTHERS

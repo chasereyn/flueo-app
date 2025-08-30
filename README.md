@@ -12,7 +12,7 @@ Flueo is an innovative language learning application that helps users learn Span
 
 ## Tech Stack
 
-- **Frontend**: Next.js with Material UI components
+- **Frontend**: Next.js with shadcn/ui components
 - **Backend**: Supabase for database and authentication
 - **Payments**: Stripe integration for subscription management
 - **AI Integration**: Advanced language processing for translations and vocabulary extraction

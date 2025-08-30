@@ -10,6 +10,29 @@ Flueo is a language learning SaaS application built with:
 - Stripe for payments
 - AI integration for language processing
 
+### Pricing Tiers
+
+1. **Free Tier**
+   - Unlimited manual flashcard creation
+   - Unlimited journal entries
+   - Basic progress tracking
+   - 5 AI-generated flashcard sets from journal entries
+   - Access to spaced repetition system
+
+2. **Premium Tier ($4.99/month)**
+   - Everything in Free tier
+   - Unlimited AI-generated flashcards from journal entries
+   - Priority support
+   - Advanced progress analytics
+   - Early access to new features
+
+### Subscription Implementation
+- Stripe handles all payment processing
+- Subscription status tracked in user_profiles table
+- Rate limiting on AI features based on subscription status
+- Graceful degradation when free tier limits are reached
+- Clear upgrade prompts when approaching free tier limits
+
 ### Database Setup
 The project uses Supabase PostgreSQL with the following tables:
 
@@ -178,6 +201,7 @@ When implementing new features:
 - Include proper foreign key relationships
 - Use Supabase auth.users as the source of truth for user data
 - Always handle auth state changes appropriately
+- Always use supabase createClient function and other related functions defined in the lib/supabase folder
 
 ### 5. AI Integration Guidelines
 
